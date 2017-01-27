@@ -17,7 +17,8 @@
 *.exe.config
 *.pdb
 *.g.i.cs
-
+*.g.cs
+*.force
 # User-specific files
 *.suo
 *.user
