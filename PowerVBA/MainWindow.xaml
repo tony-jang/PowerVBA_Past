@@ -1,0 +1,84 @@
+﻿<Window x:Class="PowerVBA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PowerVBA"
+        mc:Ignorable="d"
+        x:Name="ThisWindow" Title="MainWindow" Height="600" Width="900" Icon="PowerVBA SmallLogo.ico" WindowStyle="None" AllowsTransparency="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="DragBorder" Grid.ColumnSpan="2" MouseDown="Drag" Background="#00000000"/>
+            <Image Margin="5" Source="{Binding ElementName=ThisWindow, Path=Icon}" IsHitTestVisible="False"/>
+            <TextBlock Margin="5,0" Grid.Column="1" VerticalAlignment="Center" Text="Untitle Presentation - PowerVBA" IsHitTestVisible="False"/>
+        </Grid>
+        <TabControl Grid.Row="1">
+            <TabItem Header="파일">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="홈">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="삽입">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="VBA 삽입">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="추가 기능">
+                <Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="5" Text="슬라이드 리스트"/>
+                <Border Grid.Row="1" Background="#FFD4D4D4"/>
+            </Grid>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFD4D4D4"/>
+            <GridSplitter Grid.Column="3" HorizontalAlignment="Stretch" Background="#FFD4D4D4"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Background="#FFD24726">
+            
+        </Grid>
+        <Border Grid.RowSpan="4" BorderBrush="#FFD24726" BorderThickness="1">
+
+        </Border>
+    </Grid>
+    
+</Window>

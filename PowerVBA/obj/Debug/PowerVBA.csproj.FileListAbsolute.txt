@@ -1,0 +1,28 @@
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\bin\Debug\PowerVBA.exe.config
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\bin\Debug\PowerVBA.exe
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\bin\Debug\PowerVBA.pdb
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.csprojResolveAssemblyReference.cache
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\MainWindow.g.cs
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\App.g.cs
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA_MarkupCompile.cache
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA_MarkupCompile.lref
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\MainWindow.baml
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.g.resources
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.Properties.Resources.resources
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.csproj.GenerateResource.Cache
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.exe
+C:\Users\uutak\AppData\Local\Temporary Projects\PowerVBA\obj\Debug\PowerVBA.pdb
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\bin\Debug\PowerVBA.exe.config
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.exe
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.pdb
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\bin\Debug\PowerVBA.exe
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\bin\Debug\PowerVBA.pdb
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.csprojResolveAssemblyReference.cache
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\MainWindow.g.cs
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\App.g.cs
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA_MarkupCompile.cache
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA_MarkupCompile.lref
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\MainWindow.baml
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.g.resources
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.Properties.Resources.resources
+F:\장유탁 파일\C# Files\C# Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.csproj.GenerateResource.Cache
