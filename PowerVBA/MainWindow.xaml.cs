@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ppt = Microsoft.Office.Interop.PowerPoint;
 
 namespace PowerVBA
 {
@@ -26,12 +27,12 @@ namespace PowerVBA
         public MainWindow()
         {
             InitializeComponent();
-            pc = new PresentationConnector(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Macro.pptm");
+            pc = new PresentationConnector(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Icon.pptx");
             VBProjectConnector vbprojConn = new VBProjectConnector(pc.PowerPointPresentation.VBProject);
 
-            foreach(string name in vbprojConn.GetAllProcedureNames())
+            foreach(ppt.Shape shape in pc.GetShapes(false))
             {
-                MessageBox.Show(name);
+                MessageBox.Show(shape.Type.ToString() + " :: " + shape.Name);
             }
             this.Closing += ThisClosing;
         }

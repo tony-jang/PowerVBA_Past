@@ -57,6 +57,7 @@ namespace PowerVBA.Connector
             foreach(ppt.Shape shape in pptshapes)
             {
                 shapes.Add(shape);
+                
                 if (GetAllShapes && shape.Type == MsoShapeType.msoGroup)
                 {
                     shapes.AddRange(ShapesToList((ppt.Shapes)shape.GroupItems,true));
