@@ -1,0 +1,6 @@
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Release\PowerVBA.exe.config
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Release\MainWindow.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Release\App.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Release\PowerVBA_MarkupCompile.cache
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Release\PowerVBA_MarkupCompile.lref

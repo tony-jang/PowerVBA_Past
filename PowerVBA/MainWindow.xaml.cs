@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PowerVBA.Connector;
+using PowerVBA.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +20,33 @@ namespace PowerVBA
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : PowerVBA.Windows.ChromeWindow
     {
+        PresentationConnector pc;
         public MainWindow()
         {
             InitializeComponent();
+            pc = new PresentationConnector(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Macro.pptm");
+            VBProjectConnector vbprojConn = new VBProjectConnector(pc.PowerPointPresentation.VBProject);
+
+            foreach(string name in vbprojConn.GetAllProcedureNames())
+            {
+                MessageBox.Show(name);
+            }
+            this.Closing += ThisClosing;
         }
 
-        private void Drag(object sender, MouseButtonEventArgs e)
+        private void ThisClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this.DragMove();
+            pc.Dispose();
+        }
+
+        private void mainTabMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (mainTabMenu.SelectedIndex == 0)
+            {
+                mainTabMenu.SelectedIndex = 1;
+            }
         }
     }
 }
