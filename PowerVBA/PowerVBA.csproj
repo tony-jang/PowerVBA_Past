@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>PowerVBA BigLogo.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\PowerVBA BigLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -77,16 +77,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\WindowSystemCommand.cs" />
-    <Compile Include="Connector\PresentationConnector.cs" />
-    <Compile Include="Connector\VBProjectConnector.cs" />
-    <Compile Include="Converter\boolConverter.cs" />
+    <Compile Include="Core\Class\iItemData.cs" />
+    <Compile Include="Core\Class\ShapeData.cs" />
+    <Compile Include="Core\Class\SlideData.cs" />
+    <Compile Include="Core\Connector\PresentationConnector.cs" />
+    <Compile Include="Core\Connector\VBProjectConnector.cs" />
+    <Compile Include="Core\Converter\boolConverter.cs" />
+    <Compile Include="Core\Converter\ShapeConverter.cs" />
     <Compile Include="Interop\Constats.cs" />
     <Compile Include="Interop\ExternDll.cs" />
     <Compile Include="Interop\NativeMethods.cs" />
     <Compile Include="Interop\UnsafeNativeMethods.cs" />
+    <Compile Include="Resources\ResourceImage.cs" />
     <Compile Include="UserControls\ImageTreeViewItem.cs" />
     <Compile Include="UserControls\PathButton.cs" />
     <Compile Include="Windows\ChromeWindow.cs" />
+    <Compile Include="Windows\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,7 +107,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ResourceDictionary.xaml">
+    <Page Include="Resources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoadingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,13 +145,54 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PowerVBA MiddleLogo.ico" />
+    <Resource Include="Resources\Icons\PowerVBA MiddleLogo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PowerVBA SmallLogo.ico" />
+    <Resource Include="Resources\Icons\PowerVBA SmallLogo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PowerVBA BigLogo.ico" />
+    <Resource Include="Resources\Icons\PowerVBA BigLogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Component icon\CanvasIcon.png" />
+    <Resource Include="Resources\Component icon\CanvasIcon_s.png" />
+    <Resource Include="Resources\Component icon\ChartIcon.png" />
+    <Resource Include="Resources\Component icon\ChartIcon_s.png" />
+    <Resource Include="Resources\Component icon\DiagramIcon.png" />
+    <Resource Include="Resources\Component icon\DiagramIcon_s.png" />
+    <Resource Include="Resources\Component icon\EffectIcon.png" />
+    <Resource Include="Resources\Component icon\EffectIcon_s.png" />
+    <Resource Include="Resources\Component icon\FreeFormIcon.png" />
+    <Resource Include="Resources\Component icon\FreeFormIcon_s.png" />
+    <Resource Include="Resources\Component icon\GroupIcon.png" />
+    <Resource Include="Resources\Component icon\GroupIcon_s.png" />
+    <Resource Include="Resources\Component icon\HyperLinkIcon.png" />
+    <Resource Include="Resources\Component icon\HyperLinkIcon_s.png" />
+    <Resource Include="Resources\Component icon\layoutIcon.png" />
+    <Resource Include="Resources\Component icon\layoutIcon_s.png" />
+    <Resource Include="Resources\Component icon\lineIcon.png" />
+    <Resource Include="Resources\Component icon\lineIcon_s.png" />
+    <Resource Include="Resources\Component icon\MediaIcon.png" />
+    <Resource Include="Resources\Component icon\MediaIcon_s.png" />
+    <Resource Include="Resources\Component icon\PictureIcon.png" />
+    <Resource Include="Resources\Component icon\PictureIcon_s.png" />
+    <Resource Include="Resources\Component icon\ShapeIcon.png" />
+    <Resource Include="Resources\Component icon\ShapeIcon_s.png" />
+    <Resource Include="Resources\Component icon\SlideIcon.png" />
+    <Resource Include="Resources\Component icon\SlideIcon_s.png" />
+    <Resource Include="Resources\Component icon\SmartArtIcon.png" />
+    <Resource Include="Resources\Component icon\SmartArtIcon_s.png" />
+    <Resource Include="Resources\Component icon\TableIcon.png" />
+    <Resource Include="Resources\Component icon\TableIcon_s.png" />
+    <Resource Include="Resources\Component icon\TextBoxIcon.png" />
+    <Resource Include="Resources\Component icon\TextBoxIcon_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Component icon\pptIcon.png" />
+    <Resource Include="Resources\Component icon\pptIcon_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

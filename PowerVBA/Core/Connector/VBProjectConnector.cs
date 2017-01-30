@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ppt = Microsoft.Office.Interop.PowerPoint;
 using VBA = Microsoft.Vbe.Interop;
-using PowerVBA.Converter;
+using PowerVBA.Core.Converter;
 using System.Windows;
 
-namespace PowerVBA.Connector
+namespace PowerVBA.Core.Connector
 {
     class VBProjectConnector : IDisposable
     {

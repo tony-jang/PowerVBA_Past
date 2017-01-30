@@ -7,8 +7,8 @@
         xmlns:w="clr-namespace:PowerVBA.Windows"
         xmlns:local="clr-namespace:PowerVBA"
         x:Name="ThisWindow" mc:Ignorable="d" Title="Untitle Presentation - PowerVBA" Height="800" Width="1300"
-                Icon="PowerVBA SmallLogo.ico"
-                WindowStyle="None" AllowsTransparency="True">
+                Icon="Resources/Icons/PowerVBA SmallLogo.ico"
+                WindowStyle="None" AllowsTransparency="True" IsEnableMove="True">
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}"/>
         <Style TargetType="{x:Type u:ImageTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}"/>
@@ -66,18 +66,8 @@
                 </Grid.RowDefinitions>
                 <TextBlock Margin="5" Text="파워포인트 구성요소"/>
                 <Border Grid.Row="1" Background="#FFD4D4D4"/>
-                <TreeView Grid.Row="2" BorderBrush="Transparent">
-                    <u:ImageTreeViewItem Header="Presentation (프레젠테이션)" Image="PowerVBA SmallLogo.ico">
-                        <u:ImageTreeViewItem Header="Slide1 (슬라이드)">
-                            <u:ImageTreeViewItem Header="Shapes (도형)">
-                                <u:ImageTreeViewItem Header="Shape 12 (팔각형)"/>
-                                <u:ImageTreeViewItem Header="Shape 12 (사각형)"/>
-                            </u:ImageTreeViewItem>
-                            <u:ImageTreeViewItem Header="Animations"/>
-                            <u:ImageTreeViewItem Header="Macros"/>
-                        </u:ImageTreeViewItem>
-                        <u:ImageTreeViewItem Header="Slide2 (슬라이드)"/>
-                    </u:ImageTreeViewItem>
+                <TreeView x:Name="pptComponent" Grid.Row="2" BorderBrush="Transparent">
+
                 </TreeView>
             </Grid>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFD4D4D4"/>
@@ -88,8 +78,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Margin="5,3" Foreground="White" Text="VBA 프로젝트를 읽어들일 수 없습니다. 자세한 항목은 [도움말] 항목을 참조하세요"/>
+            <TextBlock x:Name="InfoTB" Margin="5,3" Foreground="White" Text="준비"/>
+            <ProgressBar x:Name="pb" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
         </Grid>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="556,58,0,0" Grid.Row="1" Click="button_Click"/>
+
 
 
     </Grid>

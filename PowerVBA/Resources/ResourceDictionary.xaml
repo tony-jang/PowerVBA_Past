@@ -49,17 +49,17 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <u:PathButton shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="0"
+                                <u:PathButton x:Name="MiniButt_t" shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="0"
                                               Command="{x:Static cm:WindowSystemCommand.MinimizeCommand}" Background="#00000000" />
                                 <u:PathButton x:Name="MiniButt" Data="{StaticResource MiniMizePath}" Margin="8,20,8,8" Background="#FF919191" Grid.Column="0"
                                                                  shell:WindowChrome.IsHitTestVisibleInChrome="true" Command="{x:Static cm:WindowSystemCommand.MinimizeCommand}"/>
-                                
-                                <u:PathButton shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="1"
+
+                                <u:PathButton x:Name="RestoreButt_t" shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="1"
                                               Command="{x:Static cm:WindowSystemCommand.RestoreCommand}" Background="#00000000" />
                                 <u:PathButton x:Name="RestoreButt" Data="{StaticResource MaximizePath}" Margin="8" Background="#FF919191" Grid.Column="1"
                                                                  shell:WindowChrome.IsHitTestVisibleInChrome="true" Command="{x:Static cm:WindowSystemCommand.RestoreCommand}"/>
 
-                                <u:PathButton shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="2"
+                                <u:PathButton x:Name="EndButt_t" shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="2"
                                               Command="{x:Static cm:WindowSystemCommand.CloseCommand}" Background="#00000000" />
                                 <u:PathButton x:Name="EndButt" Data="{StaticResource EndPath}" Margin="8" Background="#FF919191" Grid.Column="2"
                                                                  shell:WindowChrome.IsHitTestVisibleInChrome="true" Command="{x:Static cm:WindowSystemCommand.CloseCommand}"/>
@@ -73,6 +73,14 @@
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter Property="Margin" TargetName="ContentGrid" Value="0"/>
                             <Setter Property="Data" TargetName="RestoreButt" Value="{StaticResource RestorePath}"/>
+                        </Trigger>
+
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter Property="Visibility" TargetName="RestoreButt" Value="Hidden"/>
+                            <Setter Property="Visibility" TargetName="RestoreButt_t" Value="Hidden"/>
+
+                            <Setter Property="Grid.Column" TargetName="MiniButt" Value="1"/>
+                            <Setter Property="Grid.Column" TargetName="MiniButt_t" Value="1"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -244,7 +252,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type u:ImageTreeViewItem}">
-                    <Grid Margin="0,2">
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="ToggleCD" MinWidth="19" Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>

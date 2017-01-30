@@ -16,6 +16,23 @@ namespace PowerVBA.Windows
 {
     public class ChromeWindow : Window
     {
+        //public DependencyProperty IsEnableMoveProperty = DependencyProperty.Register("IsEnableMove",
+        //    typeof(bool), typeof(ChromeWindow), new PropertyMetadata(true));
+
+        //public bool IsEnableMove
+        //{
+        //    get { return (bool)GetValue(IsEnableMoveProperty); }
+        //    set { SetValue(IsEnableMoveProperty, value); }
+        //}
+
+        private bool _IsEnableMove = true;
+        public bool IsEnableMove
+        {
+            get { return _IsEnableMove; }
+            set { _IsEnableMove = value; }
+        }
+
+
         public IntPtr Handle { get; private set; }
 
         public ChromeWindow()
@@ -83,6 +100,8 @@ namespace PowerVBA.Windows
             hwndSource.AddHook(WndProc);
         }
 
+        const int SC_MOVE = 0xF010;
+
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             switch (msg)
@@ -93,11 +112,19 @@ namespace PowerVBA.Windows
 
                 case NativeMethods.WM_SYSCOMMAND:
                     // TODO: Catch maximize, restore
+                    if (!IsEnableMove)
+                    {
+                        int command = wParam.ToInt32() & 0xfff0;
+                        if (command == SC_MOVE) handled = true;
+                    }
+                    
                     break;
             }
 
             return IntPtr.Zero;
         }
+
+
 
         private void WmGetMinMaxInfo(IntPtr hwnd, ref IntPtr lParam)
         {

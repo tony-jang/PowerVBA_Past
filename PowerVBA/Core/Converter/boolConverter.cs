@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PowerVBA.Converter
+namespace PowerVBA.Core.Converter
 {
     static class boolConverter
     {

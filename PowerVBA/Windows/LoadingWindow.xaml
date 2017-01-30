@@ -1,0 +1,23 @@
+﻿<local:ChromeWindow x:Class="PowerVBA.Windows.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PowerVBA.Windows"
+        mc:Ignorable="d"
+        Title="LoadingWindow" Height="150" Width="300" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="infoTB" Margin="10,0" VerticalAlignment="Center" Text="슬라이드 정보를 로드 중입니다." TextAlignment="Center"/>
+            <ProgressBar x:Name="pb" Grid.Row="2" Height="15" Width="250"/>
+            <TextBlock x:Name="valueTB" Text="(0/250)" Grid.Row="3" TextAlignment="Right"/>
+        </Grid>
+
+    </Grid>
+</local:ChromeWindow>
