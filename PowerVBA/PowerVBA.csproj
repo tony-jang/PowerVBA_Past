@@ -83,7 +83,9 @@
     <Compile Include="Core\Connector\PresentationConnector.cs" />
     <Compile Include="Core\Connector\VBProjectConnector.cs" />
     <Compile Include="Core\Converter\boolConverter.cs" />
+    <Compile Include="Core\Converter\msoShapeTypeToStrConveerter.cs" />
     <Compile Include="Core\Converter\ShapeConverter.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Interop\Constats.cs" />
     <Compile Include="Interop\ExternDll.cs" />
     <Compile Include="Interop\NativeMethods.cs" />
@@ -193,6 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Component icon\objecticon.png" />
+    <Resource Include="Resources\Component icon\objecticon_s.png" />
+    <Resource Include="Resources\Component icon\olectrlobjicon.png" />
+    <Resource Include="Resources\Component icon\olectrlobjicon_s.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

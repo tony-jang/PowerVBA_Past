@@ -13,15 +13,15 @@ namespace PowerVBA.Core.Class
     {
         public bool IsLoaded { get; set; }
 
-        public ppt.Slide Item { get; set; }
+        public int SlideIndex { get; set; }
 
         public itemDataType type { get; }
                 
 
-        public SlideData(bool loaded, ppt.Slide itm)
+        public SlideData(bool loaded, int itm)
         {
             IsLoaded = loaded;
-            Item = itm;
+            SlideIndex = itm;
             type = itemDataType.SlideData;
         }
 

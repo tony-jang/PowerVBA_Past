@@ -11,8 +11,10 @@ using System.Windows;
 using PowerVBA.UserControls;
 using System.Windows.Media.Imaging;
 using static PowerVBA.Core.Converter.ShapeConverter;
+using static PowerVBA.Core.Converter.msoShapeTypeToStrConveerter;
 using static PowerVBA.Resources.ResourceImage;
 using PowerVBA.Core.Class;
+using System.Threading;
 
 namespace PowerVBA.Core.Connector
 {
@@ -29,9 +31,17 @@ namespace PowerVBA.Core.Connector
         public PresentationConnector(string FileLocation,bool Untitled = false, bool OpenWithWindow = true)
         {
             pptApp = new ppt.Application();
+            
             pptPresentation = pptApp.Presentations.Open(FileLocation, MsoTriState.msoFalse, boolConverter.boolToState(Untitled), boolConverter.boolToState(OpenWithWindow));
-
+            
             //MessageBox.Show(pptPresentation.HasVBProject.ToString());
+        }
+
+        public PresentationConnector(ppt.Presentation ppt)
+        {
+            pptApp = new ppt.Application();
+            pptPresentation = ppt;
+
         }
 
 
@@ -59,14 +69,18 @@ namespace PowerVBA.Core.Connector
 
         public List<ImageTreeViewItem> GetShapeItemBySlide(int SlideNumber)
         {
+
             if (SlideNumber > pptPresentation.Slides.Count) return null;
             BitmapImage shapeimage = GetResourceImage("Component Icon/ShapeIcon_s.png");
             var Itm = new List<ImageTreeViewItem>();
-
-            foreach (ImageTreeViewItem shapeitm in GetShapeItem(ShapesToList(GetSlides()[SlideNumber].Shapes, false),true))
-            {
-                Itm.Add(shapeitm);
-            }
+            
+                foreach (ImageTreeViewItem shapeitm in GetShapeItem(ShapesToList(GetSlides()[SlideNumber].Shapes, false), true))
+                {
+                    
+                    Itm.Add(shapeitm);
+                }
+            
+            
 
             return Itm;
         }
@@ -86,7 +100,7 @@ namespace PowerVBA.Core.Connector
 
             foreach (ppt.Shape shape in shapelist)
             {
-                var shapeitm = new ImageTreeViewItem(shapeimage, shape.Name + " (도형)", new ShapeData(false, shape));
+                var shapeitm = new ImageTreeViewItem(GetResourceIcon(shape.Type), shape.Name + $" {MsoShapeTypeToString(shape.Type)}", new ShapeData(false, shape));
 
                 if (shape.Type == MsoShapeType.msoGroup)
                     foreach (ImageTreeViewItem inneritm in GetShapeItem(GroupShapesToShapes(shape.GroupItems), GetAllGroupItem))

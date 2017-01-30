@@ -40,7 +40,6 @@ D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\PowerVBA.exe
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\PowerVBA.pdb
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\Microsoft.Windows.Shell.dll
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\Microsoft.Windows.Shell.pdb
-D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\ResourceDictionary.baml
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\PowerVBA.g.resources
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\PowerVBA.Properties.Resources.resources
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\PowerVBA.csproj.GenerateResource.Cache
@@ -65,3 +64,6 @@ F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.Properti
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\PowerVBA.csproj.GenerateResource.Cache
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.g.cs
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Resources\ResourceDictionary.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.baml
