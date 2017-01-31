@@ -19,9 +19,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ppt = Microsoft.Office.Interop.PowerPoint;
 using static PowerVBA.Resources.ResourceImage;
+using static PowerVBA.Core.Converter.msoShapeTypeToStrConverter;
+using static PowerVBA.Core.Converter.ShapeConverter;
+using static PowerVBA.Core.Converter.boolConverter;
 using static PowerVBA.Globals;
 using PowerVBA.Core.Class;
 using PowerVBA.Core.Converter;
+using System.Windows.Threading;
+using System.Reflection;
 
 namespace PowerVBA
 {
@@ -44,14 +49,9 @@ namespace PowerVBA
             mainDispatcher = Dispatcher;
 
             this.Closing += ThisClosing;
-            this.Loaded += ThisLoaded;
             pptComponent.SelectedItemChanged += PptComponent_SelectedItemChanged;
         }
-
-        private void ThisLoaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
         private void PptComponent_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -65,10 +65,16 @@ namespace PowerVBA
                     switch (itmdata.type)
                     {
                         case itemDataType.ShapeData:
-                            //MessageBox.Show("ShapeData");
+                            ShapeData shapedata = (ShapeData)itmdata;
+                            ppt.Shape shape = CustomShapeDataToShape(shapedata.Item, pc.PowerPointPresentation);
+
+                            //ppGrid.SelectedObject = shape;
+                            
+
                             break;
                         case itemDataType.SlideData:
                             SlideData slidedata = (SlideData)itmdata;
+                            
 
                             if (slidedata.IsLoaded) return;
                             pb.Value = 0;
@@ -78,23 +84,27 @@ namespace PowerVBA
                             {
                                 foreach (ppt.Shape shpe in pc.PowerPointPresentation.Slides[slidedata.SlideIndex].Shapes)
                                 {
-                                    Dispatcher.Invoke(new Action(() => {
-                                        pptComponent.IsEnabled = false;
+                                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
+                                          new Action(delegate 
+                                          {
+                                              pptComponent.IsEnabled = false;
 
-                                        var inneritm = new ImageTreeViewItem(GetResourceIcon(shpe.Type), shpe.Name);
+                                              var inneritm = new ImageTreeViewItem(GetResourceIcon(shpe.Type),
+                                                  shpe.Name + " " + MsoShapeTypeToString(shpe.Type),
+                                                  new ShapeData(false, ShapeToCustomShapeData(slidedata.SlideIndex, shpe)));
 
-                                        if (shpe.Type == Microsoft.Office.Core.MsoShapeType.msoGroup)
-                                        {
-                                            foreach(var childitem in pc.GetShapeItem(ShapeConverter.GroupShapesToShapes(shpe.GroupItems), true))
-                                            {
-                                                inneritm.Items.Add(childitem);
-                                            }
-                                        }
-                                        pb.Value++;
-                                        InfoTB.Text = $"슬라이드의 도형 정보를 읽어오는 중입니다. ({pb.Value}/{pb.Maximum})";
+                                              if (shpe.Type == Microsoft.Office.Core.MsoShapeType.msoGroup)
+                                              {
+                                                  foreach (var childitem in pc.GetShapeItem(GroupShapesToShapes(shpe.GroupItems), true))
+                                                  {
+                                                      inneritm.Items.Add(childitem);
+                                                  }
+                                              }
+                                              pb.Value++;
+                                              InfoTB.Text = $"슬라이드의 도형 정보를 읽어오는 중입니다. ({pb.Value}/{pb.Maximum})";
 
-                                        itm.Items.Add(inneritm);
-                                    }));
+                                              itm.Items.Add(inneritm);
+                                          }));
 
                                 }
 
@@ -139,18 +149,52 @@ namespace PowerVBA
             }
         }
 
+        public enum tester
+        {
+            a,b,c,d,e,f
+        }
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            int enumdata = 1;
+            string str = "abcdef";
+            bool Bool = false;
+            pg.AddEnumItem("Enum1", ref enumdata, typeof(tester));
+            pg.AddEnumItem("Enum2", ref enumdata, typeof(tester));
+            pg.AddStrItem("Str1", ref str);
+            pg.AddBoolItem("Bool1", ref Bool);
+
+
+
+            MethodInfo[] mis = typeof(ppt.Shape).GetMethods();
+            
+            foreach(MethodInfo mi in mis)
+            {
+                MessageBox.Show(mi.Name);
+            }
+
+            typeof(ppt.Shape).GetProperties();
+
+            return;
+
             var pptItem = new ImageTreeViewItem(GetResourceImage("Component Icon/ppticon_s.png"), "Presentation (프레젠테이션)");
             ImageTreeViewItem slideItem;
 
+            string location = @"F:\장유탁 파일\PowerPoint Game\Buster Wars\Buster Wars Final Edition.pptx"; //U. Buster Wars 1.5.0.pptx
 
+            InfoTB.Text = $"'{location}'프레젠테이션을 읽어오고 있습니다";
+
+            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
+                                          new Action(delegate { pc = new PresentationConnector(location, false, false); }));
+            
 
             
 
-            //pc = new PresentationConnector(@"F:\장유탁 파일\PowerPoint Game\Buster Wars\U. Buster Wars 1.5.0.pptx", false, false);
+            
 
-            pc = new PresentationConnector(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Icon.pptx", false, false);
+
+            this.Title = location + " - PowerVBA";
+            
+            //pc = new PresentationConnector(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Icon.pptx", false, false);
             ImageTreeViewItem SlidesItem = null;
 
             thr = new Thread(() =>
@@ -207,5 +251,11 @@ namespace PowerVBA
             thr.SetApartmentState(ApartmentState.STA);
             thr.Start();
         }
+
+        private void ImageButton_ExButtonClicked()
+        {
+            MessageBox.Show("!");
+        }
+        
     }
 }

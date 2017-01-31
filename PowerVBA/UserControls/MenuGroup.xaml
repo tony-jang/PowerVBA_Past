@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="PowerVBA.UserControls.MenuGroup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PowerVBA.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="300">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Text="그룹 목록" TextAlignment="Center"/>
+        <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Width="144" Height="58">
+            
+        </GroupBox>
+    </Grid>
+</UserControl>

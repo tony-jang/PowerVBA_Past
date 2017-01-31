@@ -317,4 +317,101 @@
 
 
 
+    <Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="105"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GroupBox}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ContentPresenter Margin="5"/>
+                        <TextBlock Grid.Row="1" Text="{TemplateBinding Header}" TextAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ImageButtonStyle" TargetType="{x:Type u:ImageButton}">
+        <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="u:MouseDownHelper.IsEnabled" Value="True"/>
+        <Style.Triggers>
+            <Trigger Property="buttonMode" Value="Default">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type u:ImageButton}">
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border x:Name="SimpleButton" Background="Transparent" Grid.RowSpan="2"/>
+                                    <Image IsHitTestVisible="False" Width="50" Source="{TemplateBinding BackImage}" 
+                                       Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                
+                                
+                                <ContentPresenter Margin="2,0" Grid.Row="1" VerticalAlignment="Top"
+                                                  TextBlock.TextAlignment="Center" IsHitTestVisible="False"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="SimpleButton" Value="#FCE4DC"/>
+                                </Trigger>
+                                <Trigger Property="u:MouseDownHelper.IsMouseLeftButtonDown" Value="True">
+                                    <Setter Property="Background" TargetName="SimpleButton" Value="#F5BA9D"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="buttonMode" Value="ButtonWithDetails">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type u:ImageButton}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Border x:Name="SimpleButton" Background="{TemplateBinding Background}"/>
+                                <Border x:Name="ExButton" Background="Aqua" Grid.Row="1"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="buttonMode" Value="OnlyDetails">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type u:ImageButton}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <Border x:Name="SimpleButton" Background="{TemplateBinding Background}"/>
+                                <Border x:Name="ExButton" Background="Aqua" Grid.Row="1"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

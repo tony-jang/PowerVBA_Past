@@ -56,6 +56,8 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
@@ -76,6 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Collections\ChangeAction.cs" />
+    <Compile Include="Collections\ChangeEventArgs.cs" />
+    <Compile Include="Collections\NotifyList.cs" />
     <Compile Include="Commands\WindowSystemCommand.cs" />
     <Compile Include="Core\Class\iItemData.cs" />
     <Compile Include="Core\Class\ShapeData.cs" />
@@ -91,8 +96,20 @@
     <Compile Include="Interop\NativeMethods.cs" />
     <Compile Include="Interop\UnsafeNativeMethods.cs" />
     <Compile Include="Resources\ResourceImage.cs" />
+    <Compile Include="UserControls\ImageButton.cs" />
     <Compile Include="UserControls\ImageTreeViewItem.cs" />
+    <Compile Include="UserControls\MenuGroup.xaml.cs">
+      <DependentUpon>MenuGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MouseDownHelper.cs" />
     <Compile Include="UserControls\PathButton.cs" />
+    <Compile Include="UserControls\PropertyGrid.xaml.cs">
+      <DependentUpon>PropertyGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PropertyGridItem.xaml.cs">
+      <DependentUpon>PropertyGridItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\wpfPropertyGrid.cs" />
     <Compile Include="Windows\ChromeWindow.cs" />
     <Compile Include="Windows\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
@@ -110,6 +127,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MenuGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PropertyGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PropertyGridItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,9 +222,7 @@
     <Resource Include="Resources\Component icon\pptIcon.png" />
     <Resource Include="Resources\Component icon\pptIcon_s.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Component icon\objecticon.png" />
     <Resource Include="Resources\Component icon\objecticon_s.png" />

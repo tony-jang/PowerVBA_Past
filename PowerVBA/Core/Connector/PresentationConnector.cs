@@ -11,7 +11,7 @@ using System.Windows;
 using PowerVBA.UserControls;
 using System.Windows.Media.Imaging;
 using static PowerVBA.Core.Converter.ShapeConverter;
-using static PowerVBA.Core.Converter.msoShapeTypeToStrConveerter;
+using static PowerVBA.Core.Converter.msoShapeTypeToStrConverter;
 using static PowerVBA.Resources.ResourceImage;
 using PowerVBA.Core.Class;
 using System.Threading;
@@ -28,10 +28,10 @@ namespace PowerVBA.Core.Connector
         /// </summary>
         /// <param name="FileLocation">파일 위치입니다.</param>
         /// <param name="OpenWithWindow">true일시 파워포인트 창이 같이 뜹니다.</param>
-        public PresentationConnector(string FileLocation,bool Untitled = false, bool OpenWithWindow = true)
+        public PresentationConnector(string filelocation,bool Untitled = false, bool OpenWithWindow = true)
         {
             pptApp = new ppt.Application();
-            
+            FileLocation = filelocation;
             pptPresentation = pptApp.Presentations.Open(FileLocation, MsoTriState.msoFalse, boolConverter.boolToState(Untitled), boolConverter.boolToState(OpenWithWindow));
             
             //MessageBox.Show(pptPresentation.HasVBProject.ToString());
@@ -44,7 +44,7 @@ namespace PowerVBA.Core.Connector
 
         }
 
-
+        public string FileLocation { get; set; }
 
 
         #region [ 아이템 반환 ]
@@ -100,7 +100,10 @@ namespace PowerVBA.Core.Connector
 
             foreach (ppt.Shape shape in shapelist)
             {
-                var shapeitm = new ImageTreeViewItem(GetResourceIcon(shape.Type), shape.Name + $" {MsoShapeTypeToString(shape.Type)}", new ShapeData(false, shape));
+                var shapeitm = new ImageTreeViewItem(GetResourceIcon(shape.Type),
+                                            shape.Name + " " + MsoShapeTypeToString(shape.Type),
+                                            new ShapeData(false, ShapeToCustomShapeData(((ppt.Slide)(shape.Parent)).SlideIndex, shape)));
+                
 
                 if (shape.Type == MsoShapeType.msoGroup)
                     foreach (ImageTreeViewItem inneritm in GetShapeItem(GroupShapesToShapes(shape.GroupItems), GetAllGroupItem))

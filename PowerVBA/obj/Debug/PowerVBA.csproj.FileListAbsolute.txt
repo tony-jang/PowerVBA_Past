@@ -67,3 +67,9 @@ F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWi
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.g.cs
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Resources\ResourceDictionary.baml
 D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\Windows\LoadingWindow.baml
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\MenuGroup.g.cs
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\MenuGroup.baml
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGrid.g.cs
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGrid.baml
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.g.cs
+F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.baml

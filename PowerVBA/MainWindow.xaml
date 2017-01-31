@@ -1,4 +1,4 @@
-﻿<w:ChromeWindow x:Class="PowerVBA.MainWindow"
+﻿<w:ChromeWindow xmlns:Controls="clr-namespace:System.Windows.Controls"  x:Class="PowerVBA.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,26 +12,59 @@
     <Window.Resources>
         <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}"/>
         <Style TargetType="{x:Type u:ImageTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}"/>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource GroupBoxStyle}"/>
+
     </Window.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="110"/>
+            <RowDefinition Height="140"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TabControl x:Name="mainTabMenu" Grid.Row="0" BorderBrush="#FFD4D4D4" SelectionChanged="mainTabMenu_SelectionChanged">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <StackPanel>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <TabPanel x:Name="HeaderPanel"
+                              Panel.ZIndex ="1" 
+                              KeyboardNavigation.TabIndex="1"
+                              Grid.Column="0"
+                              Grid.Row="0"
+                              Margin="2,2,2,0"
+                              IsItemsHost="true"/>
+                        </ScrollViewer>
+                        <ContentPresenter x:Name="PART_SelectedContentHost"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          Margin="{TemplateBinding Padding}"
+                                          ContentSource="SelectedContent"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </TabControl.Template>
             <TabItem x:Name="TabItemFile" Header="파일" Style="{StaticResource FileTabItemStyle}"/>
             <TabItem Header="홈">
                 <Grid>
-                    <ListView x:Name="PART_File" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderBrush="{x:Null}">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel IsItemsHost="True"/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListView>
+                    <WrapPanel>
+                        <GroupBox Header="슬라이드">
+                            <WrapPanel>
+                                <u:ImageButton Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/Component icon/SlideIcon.png" Content="새 슬라이드"/>
+                            </WrapPanel>
+                        </GroupBox>
+                        <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                        <GroupBox Header="표">
+                            <WrapPanel>
+                                <u:ImageButton Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/Component icon/tableicon.png" Content="표"/>
+                            </WrapPanel>
+                        </GroupBox>
+                        <GroupBox Header="이미지">
+                            <WrapPanel>
+                                <u:ImageButton Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/Component icon/pictureIcon.png" Content="그림"/>
+                            </WrapPanel>
+                        </GroupBox>
+                        <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                    </WrapPanel>
+
                 </Grid>
             </TabItem>
             <TabItem Header="삽입">
@@ -66,11 +99,17 @@
                 </Grid.RowDefinitions>
                 <TextBlock Margin="5" Text="파워포인트 구성요소"/>
                 <Border Grid.Row="1" Background="#FFD4D4D4"/>
-                <TreeView x:Name="pptComponent" Grid.Row="2" BorderBrush="Transparent">
-
-                </TreeView>
+                <TreeView x:Name="pptComponent" Grid.Row="2" BorderBrush="Transparent"/>
             </Grid>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFD4D4D4"/>
+            <TabControl Grid.Column="2">
+                <TabItem Header="속성">
+                    <u:PropertyGrid x:Name="pg" Foreground="Black" />
+                </TabItem>
+                <TabItem Header="Data"/>
+                <TabItem Header="Resources"/>
+                <TabItem Header="Macroes"/>
+            </TabControl>
         </Grid>
 
         <Grid Grid.Row="3" Background="#FFD24726">
@@ -81,7 +120,7 @@
             <TextBlock x:Name="InfoTB" Margin="5,3" Foreground="White" Text="준비"/>
             <ProgressBar x:Name="pb" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
         </Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="556,58,0,0" Grid.Row="1" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="736,51,0,0" Click="button_Click"/>
 
 
 
