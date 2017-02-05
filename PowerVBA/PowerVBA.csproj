@@ -38,6 +38,10 @@
     <ApplicationIcon>Resources\Icons\PowerVBA BigLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.5.0.3\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.PowerPoint.15.0.4420.1017\lib\net20\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
@@ -85,6 +89,8 @@
     <Compile Include="Core\Class\iItemData.cs" />
     <Compile Include="Core\Class\ShapeData.cs" />
     <Compile Include="Core\Class\SlideData.cs" />
+    <Compile Include="Core\Connector\Accessor.cs" />
+    <Compile Include="Core\Connector\Code\VBACodeConnector.cs" />
     <Compile Include="Core\Connector\PresentationConnector.cs" />
     <Compile Include="Core\Connector\VBProjectConnector.cs" />
     <Compile Include="Core\Converter\boolConverter.cs" />
@@ -222,12 +228,26 @@
     <Resource Include="Resources\Component icon\pptIcon.png" />
     <Resource Include="Resources\Component icon\pptIcon_s.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Component icon\objecticon.png" />
     <Resource Include="Resources\Component icon\objecticon_s.png" />
     <Resource Include="Resources\Component icon\olectrlobjicon.png" />
     <Resource Include="Resources\Component icon\olectrlobjicon_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\mouseIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\funcIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\SubIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\EnumIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\structIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

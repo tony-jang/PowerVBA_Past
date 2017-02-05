@@ -73,3 +73,11 @@ F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\Prop
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGrid.baml
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.g.cs
 F:\장유탁 파일\Github Project\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\MenuGroup.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGrid.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.g.cs
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\MenuGroup.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGrid.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\obj\Debug\UserControls\PropertyGridItem.baml
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\ICSharpCode.AvalonEdit.dll
+D:\YT's Files\C# Files\PowerVBA\PowerVBA\bin\Debug\ICSharpCode.AvalonEdit.xml

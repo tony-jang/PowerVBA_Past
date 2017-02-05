@@ -8,6 +8,8 @@ using ppt = Microsoft.Office.Interop.PowerPoint;
 using VBA = Microsoft.Vbe.Interop;
 using PowerVBA.Core.Converter;
 using System.Windows;
+using PowerVBA.Core.Connector;
+using System.Text.RegularExpressions;
 
 namespace PowerVBA.Core.Connector
 {
@@ -19,6 +21,11 @@ namespace PowerVBA.Core.Connector
         {
             VBProj = vbproj;
             VBComps = vbproj.VBComponents;
+            //VBA.VBComponent newStandardModule = VBProj.VBComponents.Add(VBA.vbext_ComponentType.vbext_ct_StdModule);
+
+            //newStandardModule.CodeModule.Name = "ABC";
+            Update();
+            return;
         }
 
         private List<string> AllProcedureNames;
@@ -43,7 +50,7 @@ namespace PowerVBA.Core.Connector
 
                     int line = 1;
 
-                    while(line < codeLines)
+                    while (line < codeLines)
                     {
                         string procedureName = compCode.get_ProcOfLine(line, out procedureType);
 
@@ -56,7 +63,7 @@ namespace PowerVBA.Core.Connector
                             list.Add(procedureName);
                             line += procedureLines - 1;
                         }
-                    
+
 
                         line++;
                     }
@@ -64,13 +71,49 @@ namespace PowerVBA.Core.Connector
             }
             AllProcedureNames = list;
         }
-        //public string GetAllCode()
-        //{
+        
+        public bool FilterName(string name)
+        {
+            string pattern = @"^[_|a-zA-z가-힣ㅏ-ㅣㄱ-ㅎ][_|a-zA-Z가-힣ㅏ-ㅣㄱ-ㅎ1-9]*$";
 
-        //}
+            if (Regex.Match(name, pattern).Success) return true;
+
+            return false;
+        }
+
+
+        public bool InsertProcedure(Accessor accessor, string name, string ReturnType = "")
+        {
+            VBA.VBComponent newStandardModule = VBProj.VBComponents.Add(VBA.vbext_ComponentType.vbext_ct_StdModule);
+
+            newStandardModule.Name = "Test Module";
+
+            string code = "";
+            if (accessor == Accessor.Private) code = "Private";
+            else if (accessor == Accessor.Public) code = "Public";
+
+            code += " ";
+
+            if (ReturnType == "") code += "Sub";
+            else code += "Function";
+
+            if (!FilterName(name)) return false;
+            
+            code += " " + name + "() ";
+
+            if (ReturnType != "") code += $"As {ReturnType}";
+
+            MessageBox.Show(code);
+
+            
+
+            return true;
+        }
+
+
         public void Dispose()
         {
-            
+
         }
     }
 }

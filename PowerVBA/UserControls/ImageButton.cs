@@ -8,18 +8,20 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Controls.Primitives;
+using System.Windows.Markup;
 
 namespace PowerVBA.UserControls
 {
     [TemplatePart(Name = "SimpleButton", Type = typeof(Border))]
     [TemplatePart(Name = "ExButton", Type = typeof(Border))]
+    [ContentProperty("Content")]
     public class ImageButton : Control
     {
         public ImageButton()
         {
             this.Style = FindResource("ImageButtonStyle") as Style;
         }
-
+        
 
         public static DependencyProperty ContentProperty = DependencyProperty.Register(nameof(Content), typeof(string), typeof(ImageButton));
         public static DependencyProperty BackImageProperty = DependencyProperty.Register(nameof(BackImage), typeof(ImageSource), typeof(ImageButton));

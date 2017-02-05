@@ -5,24 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:u="clr-namespace:PowerVBA.UserControls"
         xmlns:w="clr-namespace:PowerVBA.Windows"
+        xmlns:av="http://icsharpcode.net/sharpdevelop/avalonedit"
         xmlns:local="clr-namespace:PowerVBA"
         x:Name="ThisWindow" mc:Ignorable="d" Title="Untitle Presentation - PowerVBA" Height="800" Width="1300"
                 Icon="Resources/Icons/PowerVBA SmallLogo.ico"
                 WindowStyle="None" AllowsTransparency="True" IsEnableMove="True">
     <Window.Resources>
-        <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource TabItemStyle}"/>
-        <Style TargetType="{x:Type u:ImageTreeViewItem}" BasedOn="{StaticResource TreeViewItemStyle}"/>
-        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource GroupBoxStyle}"/>
-
+        <Style TargetType="TabItem" BasedOn="{StaticResource TabItemStyle}"/>
+        <Style TargetType="u:ImageTreeViewItem" BasedOn="{StaticResource TreeViewItemStyle}"/>
+        <Style TargetType="GroupBox" BasedOn="{StaticResource GroupBoxStyle}"/>
     </Window.Resources>
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TabControl x:Name="mainTabMenu" Grid.Row="0" BorderBrush="#FFD4D4D4" SelectionChanged="mainTabMenu_SelectionChanged">
+        <TabControl x:Name="mainTabMenu" Grid.Row="0" BorderBrush="#FFD4D4D4" SelectedIndex="1" SelectionChanged="mainTabMenu_SelectionChanged">
             <TabControl.Template>
                 <ControlTemplate TargetType="TabControl">
                     <StackPanel>
@@ -35,6 +34,7 @@
                               Margin="2,2,2,0"
                               IsItemsHost="true"/>
                         </ScrollViewer>
+
                         <ContentPresenter x:Name="PART_SelectedContentHost"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           Margin="{TemplateBinding Padding}"
@@ -43,7 +43,42 @@
                 </ControlTemplate>
             </TabControl.Template>
             <TabItem x:Name="TabItemFile" Header="파일" Style="{StaticResource FileTabItemStyle}"/>
-            <TabItem Header="홈">
+            <TabItem Header="VBA 삽입">
+                <WrapPanel>
+                    <GroupBox Header="실행 트리거">
+                        <WrapPanel>
+                            <u:ImageButton x:Name="EventMouseOverBtn" Background="#FFB6B6B6" buttonMode="Default"  BackImage="Resources/icons/MouseIcon.png" Content="MouseOver&#x0a;(마우스 올릴때)"/>
+                            <u:ImageButton x:Name="EventMouseClickBtn" Background="#FFB6B6B6" buttonMode="Default"  BackImage="Resources/icons/MouseIcon.png" Content="MouseClick&#x0a;(마우스 클릭)"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                    <GroupBox Header="함수">
+                        <WrapPanel>
+                            <u:ImageButton x:Name="AddSubBtn" Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/icons/SubIcon.png" Content="Sub"/>
+                            <u:ImageButton x:Name="AddFuncBtn" Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/icons/funcIcon.png" Content="Function"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                    <GroupBox Header="열거형">
+                        <WrapPanel>
+                            <u:ImageButton x:Name="AddEnumBtn" Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/icons/EnumIcon.png" Content="Enum"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                    <GroupBox Header="구조체">
+                        <WrapPanel>
+                            <u:ImageButton x:Name="AddTypeBtn" Background="#FFB6B6B6" buttonMode="Default" BackImage="Resources/icons/StructIcon.png" Content="Custom&#x0a;Type"/>
+                        </WrapPanel>
+                    </GroupBox>
+                    <Border Width="1" Margin="0,4" Background="#E1E1E1"/>
+                </WrapPanel>
+            </TabItem>
+            <TabItem Header="디버깅">
+                <Grid>
+                    <TextBlock Text="5"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="홈" Margin="0">
                 <Grid>
                     <WrapPanel>
                         <GroupBox Header="슬라이드">
@@ -67,21 +102,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="삽입">
-                <Grid>
-                    <TextBlock Text="3"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="VBA 삽입">
-                <Grid>
-                    <TextBlock Text="4"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="추가 기능">
-                <Grid>
-                    <TextBlock Text="5"/>
-                </Grid>
-            </TabItem>
+            
         </TabControl>
 
         <Grid Grid.Row="1">
@@ -97,18 +118,27 @@
                     <RowDefinition Height="2"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Margin="5" Text="파워포인트 구성요소"/>
+                <TextBlock Margin="5">
+                    파워포인트 구성요소
+                </TextBlock>
                 <Border Grid.Row="1" Background="#FFD4D4D4"/>
                 <TreeView x:Name="pptComponent" Grid.Row="2" BorderBrush="Transparent"/>
             </Grid>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="#FFD4D4D4"/>
             <TabControl Grid.Column="2">
-                <TabItem Header="속성">
-                    <u:PropertyGrid x:Name="pg" Foreground="Black" />
+                <TabItem Header="VBA Code">
+                    <Grid>
+                        <av:TextEditor SyntaxHighlighting="VB" FontFamily="Dotum" SnapsToDevicePixels="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                        
+                        <!--<Border Background="White">
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Foreground="Black" FontSize="15">
+                                위의 VBA 삽입 버튼중 하나를 누름으로써 코드 추가를 할 수 있습니다.<LineBreak/>
+                                모듈 명명 규칙은 슬라이드의 번호에 맟춰 Slide1_Module로 만들어지게 되며<LineBreak/>
+                                다른 모듈 코드에 접근시 Slide번호_Module의 접근자가 필요합니다.
+                            </TextBlock>
+                        </Border>-->
+                    </Grid>
                 </TabItem>
-                <TabItem Header="Data"/>
-                <TabItem Header="Resources"/>
-                <TabItem Header="Macroes"/>
             </TabControl>
         </Grid>
 
@@ -121,6 +151,7 @@
             <ProgressBar x:Name="pb" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
         </Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="736,51,0,0" Click="button_Click"/>
+        
 
 
 

@@ -24,7 +24,7 @@
 
                     <Grid x:Name="ContentGrid" Margin="3" Background="{TemplateBinding Background}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="28"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -39,7 +39,7 @@
                                 <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
                             
-                            <Image Margin="5" Source="{TemplateBinding Icon}" IsHitTestVisible="False"/>
+                            <Image Margin="3" Source="{TemplateBinding Icon}" IsHitTestVisible="False"/>
                             <TextBlock Margin="5,0" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Text="{TemplateBinding Title}" IsHitTestVisible="False"/>
 
                             <Grid Grid.Column="2">
@@ -51,7 +51,7 @@
 
                                 <u:PathButton x:Name="MiniButt_t" shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="0"
                                               Command="{x:Static cm:WindowSystemCommand.MinimizeCommand}" Background="#00000000" />
-                                <u:PathButton x:Name="MiniButt" Data="{StaticResource MiniMizePath}" Margin="8,20,8,8" Background="#FF919191" Grid.Column="0"
+                                <u:PathButton x:Name="MiniButt" Data="{StaticResource MiniMizePath}" Margin="8,17,8,8" Background="#FF919191" Grid.Column="0"
                                                                  shell:WindowChrome.IsHitTestVisibleInChrome="true" Command="{x:Static cm:WindowSystemCommand.MinimizeCommand}"/>
 
                                 <u:PathButton x:Name="RestoreButt_t" shell:WindowChrome.IsHitTestVisibleInChrome="true" Grid.Column="1"
@@ -349,12 +349,12 @@
                         <ControlTemplate TargetType="{x:Type u:ImageButton}">
                             <Grid Background="Transparent">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="45"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Border x:Name="SimpleButton" Background="Transparent" Grid.RowSpan="2"/>
-                                    <Image IsHitTestVisible="False" Width="50" Source="{TemplateBinding BackImage}" 
-                                       Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Image IsHitTestVisible="False" Width="40" Source="{TemplateBinding BackImage}" 
+                                       Height="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 
                                 
                                 <ContentPresenter Margin="2,0" Grid.Row="1" VerticalAlignment="Top"
@@ -366,6 +366,9 @@
                                 </Trigger>
                                 <Trigger Property="u:MouseDownHelper.IsMouseLeftButtonDown" Value="True">
                                     <Setter Property="Background" TargetName="SimpleButton" Value="#F5BA9D"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="Gray"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

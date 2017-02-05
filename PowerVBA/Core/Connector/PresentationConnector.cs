@@ -138,6 +138,11 @@ namespace PowerVBA.Core.Connector
             get { return pptPresentation; }
         }
 
+        public VBA.VBProject VBProject
+        {
+            get { return pptPresentation.VBProject; }
+        }
+
         public List<ppt.Shape> GetShapes(bool GetAllChildShapes)
         {
             List<ppt.Shape> shapes = new List<ppt.Shape>();

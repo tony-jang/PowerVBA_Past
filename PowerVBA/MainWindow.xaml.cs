@@ -10,13 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ppt = Microsoft.Office.Interop.PowerPoint;
 using static PowerVBA.Resources.ResourceImage;
 using static PowerVBA.Core.Converter.msoShapeTypeToStrConverter;
@@ -60,23 +53,35 @@ namespace PowerVBA
                 
                 ImageTreeViewItem itm = (ImageTreeViewItem)e.NewValue;
                 iItemData itmdata = itm.data;
-
+                ImageButton[] ableAddBtns, unableAddBtns;
+                ableAddBtns = new ImageButton[] { };
+                unableAddBtns = new ImageButton[] { AddEnumBtn, AddFuncBtn, AddSubBtn, AddTypeBtn, EventMouseOverBtn, EventMouseClickBtn };
                 if (itmdata != null)
                     switch (itmdata.type)
                     {
                         case itemDataType.ShapeData:
+                            // 쉐이프 선택
                             ShapeData shapedata = (ShapeData)itmdata;
                             ppt.Shape shape = CustomShapeDataToShape(shapedata.Item, pc.PowerPointPresentation);
+
+
+                            
+                            ableAddBtns = new ImageButton[]{ AddEnumBtn, AddFuncBtn, AddSubBtn, AddTypeBtn, EventMouseOverBtn, EventMouseClickBtn };
+                            unableAddBtns = new ImageButton[] { };
+                            
 
                             //ppGrid.SelectedObject = shape;
                             
 
                             break;
                         case itemDataType.SlideData:
+                            // 슬라이드 선택
                             SlideData slidedata = (SlideData)itmdata;
-                            
 
-                            if (slidedata.IsLoaded) return;
+                            ableAddBtns = new ImageButton[] { AddEnumBtn, AddFuncBtn, AddSubBtn, AddTypeBtn};
+                            unableAddBtns = new ImageButton[] { EventMouseOverBtn, EventMouseClickBtn };
+
+                            if (slidedata.IsLoaded) break;
                             pb.Value = 0;
                             pb.Minimum = 0; pb.Maximum = pc.PowerPointPresentation.Slides[slidedata.SlideIndex].Shapes.Count;
 
@@ -123,9 +128,18 @@ namespace PowerVBA
                             break;
                         default:
                             MessageBox.Show(itmdata.GetType().ToString());
+
                             break;
                     }
-                
+                foreach (ImageButton btn in ableAddBtns)
+                {
+                    btn.IsEnabled = true;
+                }
+
+                foreach (ImageButton btn in unableAddBtns)
+                {
+                    btn.IsEnabled = false;
+                }
             }
         }
 
@@ -155,36 +169,39 @@ namespace PowerVBA
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            int enumdata = 1;
-            string str = "abcdef";
-            bool Bool = false;
-            pg.AddEnumItem("Enum1", ref enumdata, typeof(tester));
-            pg.AddEnumItem("Enum2", ref enumdata, typeof(tester));
-            pg.AddStrItem("Str1", ref str);
-            pg.AddBoolItem("Bool1", ref Bool);
+            //int enumdata = 1;
+            //string str = "abcdef";
+            //bool Bool = false;
+            //pg.AddEnumItem("Enum1", ref enumdata, typeof(tester));
+            //pg.AddEnumItem("Enum2", ref enumdata, typeof(tester));
+            //pg.AddStrItem("Str1", ref str);
+            //pg.AddBoolItem("Bool1", ref Bool);
 
 
 
-            MethodInfo[] mis = typeof(ppt.Shape).GetMethods();
+            //MethodInfo[] mis = typeof(ppt.Shape).GetMethods();
             
-            foreach(MethodInfo mi in mis)
-            {
-                MessageBox.Show(mi.Name);
-            }
+            //foreach(MethodInfo mi in mis)
+            //{
+            //    MessageBox.Show(mi.Name);
+            //}
 
-            typeof(ppt.Shape).GetProperties();
+            //typeof(ppt.Shape).GetProperties();
 
-            return;
+            //return;
 
             var pptItem = new ImageTreeViewItem(GetResourceImage("Component Icon/ppticon_s.png"), "Presentation (프레젠테이션)");
             ImageTreeViewItem slideItem;
 
-            string location = @"F:\장유탁 파일\PowerPoint Game\Buster Wars\Buster Wars Final Edition.pptx"; //U. Buster Wars 1.5.0.pptx
+            //F:\장유탁 파일\PowerPoint Game\Buster Wars\Buster Wars Final Edition.pptx
+            string location = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}\Icon.pptm"; //U. Buster Wars 1.5.0.pptx
 
             InfoTB.Text = $"'{location}'프레젠테이션을 읽어오고 있습니다";
 
             Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
-                                          new Action(delegate { pc = new PresentationConnector(location, false, false); }));
+                                          new Action(delegate { pc = new PresentationConnector(location, false, true);
+                                              VBProjectConnector vc = new VBProjectConnector(pc.VBProject);
+                                          }));
             
 
             
